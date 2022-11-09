@@ -113,9 +113,9 @@ export const getStaticProps = async() => {
     guessCountResponse, 
     userCountResponse
   ] = await Promise.all([
-    api.get("http://localhost:3333/pools/count"),
-    api.get("http://localhost:3333/guesses/count"),
-    api.get("http://localhost:3333/users/count")
+    api.get("pools/count"),
+    api.get("guesses/count"),
+    api.get("users/count")
   ])
 
   return {
