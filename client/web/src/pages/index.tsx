@@ -107,7 +107,7 @@ export default function Home(props: HomeProps) {
   )
 }
 
-export const getServerSideProps = async() => {
+export const getStaticProps = async() => {
   const [
     poolCountResponse, 
     guessCountResponse, 
@@ -123,6 +123,7 @@ export const getServerSideProps = async() => {
       poolCount: poolCountResponse.data.count,
       guessCount: guessCountResponse.data.count,
       userCount: userCountResponse.data.count,
-    }
+    },
+    revalidate: 60
   }
 }
