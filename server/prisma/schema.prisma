@@ -17,5 +17,3 @@ model Pool {
   code      String   @unique
   createdAt DateTime @default(now())
 }
-
-// 44:29
