@@ -7,7 +7,7 @@ import { api } from "../services/api";
 import { Button } from "../components/Button";
 import { Header } from "../components/Header";
 import { Input } from "../components/Input";
-// tempo 57:44
+
 export function Find() {
   const [ isLoading, setIsLoading ] = useState(false);
   const [ code, setCode ] = useState("");
