@@ -1,6 +1,9 @@
 import { Button, HStack, Text, useTheme, VStack } from 'native-base';
 import { X, Check } from 'phosphor-react-native';
 import { getName } from 'country-list';
+import { useState } from "react";
+import dayjs from "dayjs";
+import ptBR from "dayjs/locale/pt-br"
 
 import { Team } from './Team';
 
@@ -15,6 +18,7 @@ interface GuessProps {
 
 export interface GameProps {
   id: string;
+  date: string;
   firstTeamCountryCode: string;
   secondTeamCountryCode: string;
   guess: null | GuessProps;
@@ -29,6 +33,15 @@ interface Props {
 
 export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessConfirm }: Props) {
   const { colors, sizes } = useTheme();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const when = dayjs(data.date).locale(ptBR).format("DD [de] MMMM [de] YYYY [às] HH:MM");
+
+  const onPressConfirmFunction = async function() {
+    setIsLoading(true);
+    await onGuessConfirm();
+    setIsLoading(false);
+  }
 
   return (
     <VStack
@@ -46,7 +59,7 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
       </Text>
 
       <Text color="gray.200" fontSize="xs">
-        22 de Novembro de 2022 às 16:00h
+        {when}
       </Text>
 
       <HStack mt={4} w="full" justifyContent="space-between" alignItems="center">
@@ -67,7 +80,7 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
 
       {
         !data.guess &&
-        <Button size="xs" w="full" bgColor="green.500" mt={4} onPress={onGuessConfirm}>
+        <Button size="xs" w="full" bgColor="green.500" mt={4} onPress={onPressConfirmFunction} isLoading={isLoading} >
           <HStack alignItems="center">
             <Text color="white" fontSize="xs" fontFamily="heading" mr={3}>
               CONFIRMAR PALPITE

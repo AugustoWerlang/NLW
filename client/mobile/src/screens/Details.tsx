@@ -40,7 +40,7 @@ export function Details() {
       toast.show({
         title: "Não foi possivel carregar os detalhes do bolão",
         placement: "top",
-        color: "red.500",
+        bgColor: "red.500",
       })
     } finally {
       setIsLoading(false);
@@ -90,7 +90,7 @@ export function Details() {
               />
             </HStack>
 
-            <Guesses poolId={poolDetails.id} />
+            <Guesses poolId={poolDetails.id} code={poolDetails.code} />
           </VStack>
         : 
           <EmptyMyPoolList code={poolDetails.code} />

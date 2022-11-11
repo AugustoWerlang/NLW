@@ -50,7 +50,7 @@ export async function guessRoutes(fastify: FastifyInstance) {
       }
     })
 
-    if(!guess) {
+    if(guess) {
       return reply.status(400).send({
         message: "You already sent a guess to this game on this pool.",
       })
