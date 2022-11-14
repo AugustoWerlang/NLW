@@ -17,9 +17,8 @@ async function bootstrap() {
     origin: true,
   })
 
-  //! Em produção isso precisa ser uma variavel ambiente .env
   await fastify.register(jwt, {
-    secret: "nlwcopa",
+    secret: process.env.SECRET_KEY,
   })
 
   await fastify.register(authRoutes)
